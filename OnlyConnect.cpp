@@ -4,7 +4,7 @@
 using namespace std;
 
 bool isConsonant(char ch) {
-    ch = toUpperCase(string(1, ch))[0]; // Convert to uppercase
+    ch = toUpperCase(string(1, ch))[0];
     return isalpha(ch) && !(ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U');
 }
 
