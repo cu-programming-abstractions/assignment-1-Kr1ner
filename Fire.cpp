@@ -1,4 +1,5 @@
 #include "Fire.h"
+#include "random.h"
 using namespace std;
 
 void updateFire(Grid<int>& fire) {
@@ -6,7 +7,26 @@ void updateFire(Grid<int>& fire) {
      * when this function isn't implemented. Delete this comment and the next line, then
      * implement this function.
      */
-    (void) fire;
+    int rows = fire.numRows();
+    int cols = fire.numCols();
+    Grid<int> Firedup = fire;
+    for(int i=rows-2;i>=0;i--){
+        for(int j=0;j<cols;j++){
+            int val = fire[i+1][j];
+            Vector<int> options;
+            if(j>0)options+=j-1;
+            options+=j;
+            if (j < cols - 1) options += j + 1;
+            int targetCol = options[randomInteger(0, options.size() - 1)];
+            if (randomChance(2.0 / 3.0) && val > 0) {
+                val -= 1;
+            }
+            Firedup[i][targetCol] = val;
+
+
+        }
+    }
+    fire = Firedup;
 }
 
 
